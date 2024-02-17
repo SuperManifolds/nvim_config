@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     command = "belowright 10split | terminal"
 })
 
+
 local golang_organize_imports = function(bufnr, isPreflight)
   local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding(bufnr))
   params.context = { only = { "source.organizeImports" } }

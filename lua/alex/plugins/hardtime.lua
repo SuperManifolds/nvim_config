@@ -5,7 +5,7 @@ return {
         opts = {
             disable_mouse = false,
             max_count = 3,
-            disabled_keys = {
+             disabled_keys = {
                 ["<Up>"] = {},
                 ["<Down>"] = {},
                 ["<Left>"] = {},
@@ -24,10 +24,10 @@ return {
                       ["<C-M>"] = { "n", "x" },
                       ["<C-N>"] = { "n", "x" },
                       ["<C-P>"] = { "n", "x" },
-                      ["<Up>"] = { "n", "x" },
-                      ["<Down>"] = { "n", "x" },
-                      ["<Left>"] = { "n", "x" },
-                      ["<Right>"] = { "n", "x" }
+                      ["<Up>"] = { "n", "x", "i" },
+                      ["<Down>"] = { "n", "x", "i" },
+                      ["<Left>"] = { "n", "x", "i" },
+                      ["<Right>"] = { "n", "x", "i" },
             }
         }
     }

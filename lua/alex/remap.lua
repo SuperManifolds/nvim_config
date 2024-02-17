@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+vim.keymap.set('n', '<leader>git', vim.cmd.Git)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -78,13 +78,21 @@ vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
-vim.keymap.set('i', '<Tab>', function()
+vim.keymap.set('i', '<Right>', function()
   if require("copilot.suggestion").is_visible() then
     require("copilot.suggestion").accept_line()
   else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false)
   end
-end, { desc = "Super Tab" })
+end)
+vim.keymap.set("i", "<Tab>", function() 
+    if require("cmp").visible() then
+        require("cmp").confirm({ select=true })
+    else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+    end
+end)
+
 vim.keymap.set("i", "<S-Down>", function()
   if require("copilot.suggestion").is_visible() then
     require("copilot.suggestion").accept()
@@ -93,4 +101,13 @@ vim.keymap.set("i", "<S-Down>", function()
   end
 end, { desc = "Super Tab" })
 
-
+vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)

@@ -35,7 +35,6 @@ return {
       cmp.setup({
         formatting = lsp_zero.cmp_format(),
         mapping = cmp.mapping.preset.insert({
-          ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
@@ -71,15 +70,14 @@ return {
         lsp_zero.default_keymaps({buffer = bufnr})
       end)
 
+      require('lspconfig').clangd.setup({
+        
+      })
+
       require('mason-lspconfig').setup({
         ensure_installed = {},
         handlers = {
           lsp_zero.default_setup,
-          lua_ls = function()
-            -- (Optional) Configure lua language server for neovim
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
-          end,
           gopls = function()
             require('lspconfig').gopls.setup({
                 settings = {
