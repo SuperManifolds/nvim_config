@@ -78,11 +78,11 @@ vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
-vim.keymap.set('i', '<Right>', function()
+vim.keymap.set('i', '<S-Right>', function()
   if require("copilot.suggestion").is_visible() then
     require("copilot.suggestion").accept_line()
   else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Right>", true, false, true), "n", false)
   end
 end)
 vim.keymap.set("i", "<Tab>", function() 
