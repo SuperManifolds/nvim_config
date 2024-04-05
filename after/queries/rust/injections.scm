@@ -1,9 +1,20 @@
-(macro_invocation
+; extends
+((macro_invocation
   (scoped_identifier
-    path: (identifier) @_path (#eq? @_path "sqlx")
-    name: (identifier) @_name (#eq? @_name "query"))
+    path: (identifier) @_path
+    name: (identifier) @_name)
+  (token_tree
+    . (raw_string_literal) @sql)
+ (#eq? @_name "query")
+ (#eq? @_path "sqlx"))
+ (#offset! @sql 0 3 0 -2))
 
-  (token_tree 
-    (raw_string_literal) @sql)
-    (#offset! @sql 1 0 0 0 )
-)
+((macro_invocation
+  (scoped_identifier
+    path: (identifier) @_path
+    name: (identifier) @_name)
+  (token_tree
+    . (string_literal) @sql)
+ (#eq? @_name "query")
+ (#eq? @_path "sqlx"))
+ (#offset! @sql 0 1 0 -1))

@@ -32,5 +32,8 @@ vim.opt.colorcolumn = "120"
         ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
       },
-    }
+}
+
+
+
 
