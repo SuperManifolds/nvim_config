@@ -18,6 +18,7 @@ return {
 				hide_dotfiles = false
 			},
             group_empty_dirs = true,
+            use_libuv_file_watcher = true,
         },
 		follow_current_file = {
 			enabled = true
