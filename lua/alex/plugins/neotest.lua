@@ -1,11 +1,26 @@
-return {{ 
-  "nvim-neotest/neotest",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "nvim-neotest/neotest-go",
-    "rouge8//neotest-rust",
-    "nvim-neotest/neotest-jest"
-  }
-}}
+return {
+    "nvim-neotest/neotest",
+    dependencies = {
+        "lawrence-laz/neotest-zig", -- Installation
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim",
+    },
+    config = function()
+        require("neotest").setup({
+            adapters = {
+                -- Registration
+                require("neotest-go"),
+                require("neotest-rust") {
+                    args = { "--no-capture" },
+                },
+                require("neotest-zig")({
+                    dap = {
+                        adapter = "lldb",
+                    }
+                }),
+            }
+        })
+    end
+}
+
