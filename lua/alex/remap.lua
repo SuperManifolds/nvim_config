@@ -15,7 +15,7 @@ vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
-vim.keymap.set("n", "<leader>f", function ()
+vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format()
 end)
 
@@ -78,38 +78,24 @@ vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
-vim.keymap.set('i', '<S-Right>', function()
-  if require("copilot.suggestion").is_visible() then
-    require("copilot.suggestion").accept_line()
-  else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Right>", true, false, true), "n", false)
-  end
-end)
-vim.keymap.set("i", "<Tab>", function() 
+
+vim.keymap.set("i", "<Tab>", function()
     if require("cmp").visible() then
-        require("cmp").confirm({ select=true })
+        require("cmp").confirm({ select = true })
     else
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
     end
 end)
 
-vim.keymap.set("i", "<S-Down>", function()
-  if require("copilot.suggestion").is_visible() then
-    require("copilot.suggestion").accept()
-  else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Down>", true, false, true), "n", false)
-  end
-end, { desc = "Super Tab" })
-
 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-    vim.keymap.set('n', 'e]', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-    vim.keymap.set('n', 'e[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+vim.keymap.set('n', 'e]', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+vim.keymap.set('n', 'e[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)

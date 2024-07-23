@@ -7,6 +7,11 @@ return {
             require("copilot").setup({
                 suggestion = {
                     auto_trigger = true,
+                    keymap = {
+                        accept = "<Right>",
+                        accept_line = "<Down>",
+                        next = "<Up>",
+                    }
                 }
             })
         end

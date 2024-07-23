@@ -3,6 +3,12 @@ require("alex.remap")
 require("alex.lazy")
 require("alex.set")
 
+vim.filetype.add({
+    extension = {
+        templ = "templ",
+    },
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     command = "belowright 10split | terminal"
@@ -61,4 +67,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end,
         })
     end
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.templ",
+    callback = function() vim.cmd("TSBufEnable highlight") end
 })
