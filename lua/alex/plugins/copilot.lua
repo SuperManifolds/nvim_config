@@ -8,9 +8,9 @@ return {
                 suggestion = {
                     auto_trigger = true,
                     keymap = {
-                        accept = "<Down>",
-                        accept_line = "<Right>",
-                        next = "<Up>",
+                        accept = "<S-Down>",
+                        accept_line = "<S-Right>",
+                        next = "<S-Up>",
                     }
                 }
             })
